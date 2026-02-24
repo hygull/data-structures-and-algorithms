@@ -138,6 +138,78 @@ Each topic must be both a learning resource and a quick-reference cheat sheet:
 | **No External Dependencies** | stdlib only (unless explicitly noted)                      |
 | **Comments**                 | Explain *why*, not *what*                                  |
 
+## Commit Message Format
+
+All commits to this repository must follow the Jira Smart Commit format to enable automatic tracking and integration with Jira.
+
+### Required Format
+
+```
+DSA-X <descriptive commit message>
+```
+
+Where `X` is the Jira ticket number from `docs/project/jira_plans.md`.
+
+### Examples
+
+**Good commit messages:**
+```
+DSA-3 Add binary search implementation with test cases
+DSA-7 Fix edge case in merge sort for single element arrays
+DSA-12 Update complexity analysis in AVL tree README
+DSA-5 Implement heap operations #time 2h #done
+```
+
+**Bad commit messages:**
+```
+Add binary search          ❌ Missing ticket ID
+DSA-3: Add implementation  ❌ Using colon instead of space
+Fixed bug                  ❌ Missing ticket ID and unclear message
+```
+
+### Git Hook Integration
+
+A Git hook is installed at `.git/hooks/prepare-commit-msg` that automatically prompts for the Jira ticket ID if your commit message doesn't already include it.
+
+**Usage:**
+```bash
+$ git commit -m "Add binary search implementation"
+
+🎫 Jira Smart Commit Helper
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Enter Jira ticket ID (e.g., DSA-3) or press Enter to skip: 3
+
+✅ Commit message updated: DSA-3: ...
+```
+
+**Bypass the hook** (for trivial commits):
+```bash
+git commit --no-verify -m "Fix typo in README"
+```
+
+### Jira Smart Commit Commands
+
+Enhance your commits with Jira commands:
+
+| Command | Effect | Example |
+|---------|--------|---------|
+| `#done` | Transition ticket to Done | `DSA-3 Complete implementation #done` |
+| `#time Xh` | Log work time | `DSA-5 Add tests #time 2h` |
+| `#comment <text>` | Add comment to ticket | `DSA-7 Fix bug #comment Resolved edge case` |
+
+**Combined commands:**
+```bash
+git commit -m "DSA-10 Complete heap implementation #time 3h #done"
+```
+
+### References
+
+For detailed information on the Git hook setup and troubleshooting, see:
+- [Git Hooks Guide](../../docs/git/commit-hooks-guide.md)
+- [Workflow Guide](../../docs/project/workflow-guide.md)
+
+---
+
 ## Quality Checklist (Per Topic)
 
 Before marking a topic complete, verify:
@@ -152,3 +224,4 @@ Before marking a topic complete, verify:
 - [ ] Code file has type hints, docstrings, and passing test cases
 - [ ] No broken links
 - [ ] Consistent formatting with the rest of the repo
+- [ ] All commits use proper Jira ticket format: `DSA-X <message>`

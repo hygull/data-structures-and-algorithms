@@ -1,0 +1,13 @@
+{
+  "enabled": true,
+  "name": "Jira Smart Commit - Add Ticket ID",
+  "description": "Prompts for Jira ticket ID and prepends it to commit messages",
+  "version": "1",
+  "when": {
+    "type": "promptSubmit"
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Before committing, check if the user's message starts with 'DSA-' pattern. If not, ask the user: 'What is the Jira ticket ID for this commit? (e.g., DSA-3, or press Enter to skip)'. If they provide a ticket ID, prepend 'DSA-X ' to their commit message where X is the ticket number they provided. If they included 'DSA-' prefix, strip it first. Format the final message as 'DSA-X <original message>' with a space, not a colon."
+  }
+}

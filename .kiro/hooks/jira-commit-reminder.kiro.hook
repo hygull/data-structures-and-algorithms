@@ -1,0 +1,13 @@
+{
+  "enabled": true,
+  "name": "Jira Smart Commit - Log Completion",
+  "description": "Reminds user about Jira Smart Commit commands after committing",
+  "version": "1",
+  "when": {
+    "type": "agentStop"
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Remind the user that they can use Jira Smart Commit commands in their next commit: #done (mark as done), #time Xh (log time), #comment <text> (add comment). Keep it brief and friendly."
+  }
+}
