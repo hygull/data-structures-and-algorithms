@@ -1,0 +1,19 @@
+{
+  "enabled": true,
+  "name": "DSA Progress Tracker",
+  "description": "Tracks when DSA implementation files are saved",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "**/*.py",
+      "**/README.md"
+    ]
+  },
+  "then": {
+    "type": "runCommand",
+    "command": "echo \"File saved: $FILE_PATH at $(date)\" >> .kiro/progress.log"
+  },
+  "workspaceFolderName": "data-structures-and-algorithms",
+  "shortName": "dsa-progress-tracker"
+}
